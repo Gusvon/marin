@@ -15,16 +15,15 @@
         margin: 0;
         padding: 0;
         cursor: url("https://cur.cursors-4u.net/others/oth-7/oth647.cur"), auto;
-        transition: background-color 1s ease; /* Transição suave para mudança de cor */
+        transition: background-color 1s ease;
       }
 
       h1 {
-        font-size: 36px; /* Fonte menor */
+        font-size: 36px;
         color: #ff66cc;
         text-shadow: 0 0 10px #ff66cc, 0 0 20px #ff66cc;
         margin: 40px 0 20px;
         animation: blink 1s infinite, tremor 2s infinite alternate;
-        text-align: center;
       }
 
       @keyframes blink {
@@ -56,7 +55,6 @@
         font-size: 18px;
         display: inline-block;
         border-radius: 10px;
-        text-align: center;
       }
 
       .breadcrumbs a {
@@ -83,24 +81,10 @@
         margin: 10px;
       }
 
-      .counter {
-        margin: 20px 0;
-        font-size: 18px;
-        color: #ccc;
-      }
-
       iframe {
         margin: 30px auto;
         border: 5px solid #ff66cc;
         display: block;
-      }
-
-      .footer-message {
-        font-size: 16px;
-        color: #ccc;
-        margin: 50px 0 20px 0;
-        padding: 20px;
-        border-top: 1px solid #ff66cc;
       }
 
       .heartRain {
@@ -121,7 +105,6 @@
         display: none;
       }
 
-      /* Botões no rodapé */
       .button-group {
         position: fixed;
         bottom: 30px;
@@ -188,15 +171,40 @@
           width: 70px;
         }
       }
+
+      .corner-info {
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+        font-size: 12px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.7);
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-weight: bold;
+        box-shadow: 0 0 8px #000;
+      }
+
+      .tiny-icon {
+        width: 18px;
+        height: 18px;
+      }
     </style>
   </head>
+
   <body>
     <h1>Marina: A Noite do Meu Dia 🖤✨</h1>
 
-    <!-- Migalha de navegação -->
     <div class="breadcrumbs">
-      <a href="#">Início 💀</a> <a href="#">Poemas 💀</a>
-      <a href="#">Fotos 💀</a> <a href="#">Quem é Marina 💀</a>
+      <a href="#">Início 💀</a>
+      <a href="#">Poemas 💀</a>
+      <a href="pagina_fotos.html">Fotos 💀</a>
+      <!-- Link adicionado aqui -->
+      <a href="#">Quem é Marina 💀</a>
     </div>
 
     <div>
@@ -210,10 +218,6 @@
         alt="broken heart"
         class="glitter-gif"
       />
-    </div>
-
-    <div class="counter">
-      Almas sombrias registradas: <span id="visitCount">0</span>
     </div>
 
     <iframe
@@ -230,21 +234,25 @@
       <button class="btn-drama" id="btnDespedida">Enviar 💀</button>
     </div>
 
-    <div class="footer-message">
-      Se você chegou até aqui, saiba que todo esse drama é só porque eu te amo
-      pra caramba. 🖤 E não importa quantos dias cinzas venham, você sempre vai
-      ser a cor no meu céu sem estrelas.
-    </div>
-
-    <!-- Botões no final -->
+    <!-- Único botão -->
     <div class="button-group">
-      <a href="#" class="btn-drama" id="btnAmor"
-        >Clique aqui se você me ama 🖤</a
-      >
-      <a href="#" class="btn-drama" id="meResponda">Me responda 🥺</a>
+      <a href="#" class="btn-drama" id="btnAmor">Se você me ama 🖤</a>
     </div>
 
-    <a href="#" class="float-btn" id="segredo">💖</a>
+    <!-- Canto inferior esquerdo -->
+    <div class="corner-info">
+      <img
+        src="https://media.tenor.com/ZT6vX1FUDuwAAAAi/skull.gif"
+        alt="skull"
+        class="tiny-icon"
+      />
+      <img
+        src="https://media.tenor.com/ekMfFJxux1sAAAAi/broken-heart.gif"
+        alt="broken heart"
+        class="tiny-icon"
+      />
+      <span>Almas: <span id="cornerVisitCount">666</span></span>
+    </div>
 
     <audio id="clickSound">
       <source
@@ -254,61 +262,34 @@
     </audio>
 
     <script>
-      // Contador salvo no localStorage
       let count = localStorage.getItem("almaCount") || 666;
-      document.getElementById("visitCount").textContent = count;
+      document.getElementById("cornerVisitCount").textContent = count;
 
       function playSound() {
         document.getElementById("clickSound").play();
       }
 
-      document.getElementById("btnAmor").addEventListener("click", function () {
+      document.getElementById("btnAmor").addEventListener("click", () => {
         playSound();
         count++;
-        document.getElementById("visitCount").textContent = count;
+        document.getElementById("cornerVisitCount").textContent = count;
         localStorage.setItem("almaCount", count);
         alert(
           "🖤✨ Eu te amo ainda mais, Marina! 🖤💖💀🌙 Você é minha emo favorita, minha estrela triste no céu sombrio! ✨💔🖤"
         );
       });
 
-      document
-        .getElementById("meResponda")
-        .addEventListener("click", function () {
-          playSound();
-          let resposta = prompt("Você me ama também? (sim/não)");
-          if (resposta && resposta.toLowerCase() === "sim") {
-            alert("😭🖤 EU SEMPRE VOU TE AMAR MAIS! 🖤✨💖");
-          } else {
-            alert(
-              "💔 Tudo bem… vou continuar sofrendo ouvindo My Chemical Romance sozinho 😭"
-            );
-          }
-        });
-
-      document
-        .getElementById("btnDespedida")
-        .addEventListener("click", function () {
-          playSound();
-          let msg = document.getElementById("despedida").value;
-          if (msg) {
-            alert(
-              "💌 Sua mensagem foi enviada para as estrelas tristes: " + msg
-            );
-            document.getElementById("despedida").value = "";
-          } else {
-            alert("😢 Escreve algo antes...");
-          }
-        });
-
-      document.getElementById("segredo").addEventListener("click", function () {
+      document.getElementById("btnDespedida").addEventListener("click", () => {
         playSound();
-        alert(
-          "💖 Marina… você é a razão de todas essas páginas emo existirem. 💖🖤✨"
-        );
+        let msg = document.getElementById("despedida").value;
+        if (msg) {
+          alert("💌 Sua mensagem foi enviada para as estrelas tristes: " + msg);
+          document.getElementById("despedida").value = "";
+        } else {
+          alert("😢 Escreve algo antes...");
+        }
       });
 
-      // Corações descendo
       const emojis = ["💔", "🖤", "✨"];
       setInterval(() => {
         const heart = document.createElement("div");
@@ -320,17 +301,6 @@
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 5000);
       }, 300);
-
-      // Mudança de cor de fundo dinâmica
-      let colors = ["#ff66cc", "#ffffff", "#000000", "#6a0dad"];
-      let currentColor = 0;
-
-      function changeBackgroundColor() {
-        document.body.style.backgroundColor = colors[currentColor];
-        currentColor = (currentColor + 1) % colors.length;
-      }
-
-      setInterval(changeBackgroundColor, 5000); // Muda a cor do fundo a cada 5 segundos
     </script>
   </body>
 </html>
